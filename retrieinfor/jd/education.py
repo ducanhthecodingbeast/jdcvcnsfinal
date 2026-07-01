@@ -38,18 +38,18 @@ def extract_education_requirements(job_req: str, job_desc: str = "") -> dict:
 
     # Extract required education level
     required_education_level = extract_multiple_answers(context, [
-        "What education level is required for this job?",
-        "What degree is needed? University, college, or high school?",
-        "What is the minimum education requirement?",
-        "Does the candidate need to graduate from university or college?"
+        "Yêu cầu trình độ học vấn cho công việc này là gì?",
+        "Yêu cầu bằng cấp gì? Đại học, cao đẳng hay trung học phổ thông?",
+        "Yêu cầu trình độ học vấn tối thiểu là gì?",
+        "Ứng viên có cần tốt nghiệp đại học hoặc cao đẳng không?"
     ], combine=False)
 
     # Extract required major/field
     required_major = extract_multiple_answers(context, [
-        "What major or field of study is required?",
-        "What subject or specialization is preferred?",
-        "What academic background is needed?",
-        "What should the candidate have studied?"
+        "Yêu cầu chuyên ngành hoặc lĩnh vực học tập gì?",
+        "Ưu tiên chuyên ngành hoặc chuyên môn gì?",
+        "Yêu cầu nền tảng học vấn gì?",
+        "Ứng viên nên học chuyên ngành gì?"
     ], combine=False)
 
     return {

@@ -29,11 +29,11 @@ def extract_salary(salary_text: str) -> str:
 
     context = str(salary_text).strip()
 
-    # Questions in Vietnamese
     questions = [
-        "Mức lương mà người này mong muốn hoặc kỳ vọng là bao nhiêu?",
-        "Yêu cầu lương của ứng viên là gì?",
-        "Người này đang tìm kiếm mức thù lao nào?"
+        "Mức lương mong muốn của người này là bao nhiêu?",
+        "Người này kỳ vọng mức lương như thế nào?",
+        "Mức thù lao mong muốn là bao nhiêu?",
+        "Lương kỳ vọng hàng tháng hoặc hàng năm là bao nhiêu?"
     ]
 
     result = extract_multiple_answers(context, questions, combine=False)

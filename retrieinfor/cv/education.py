@@ -1,5 +1,7 @@
 """
-Extract education information from CV using embeddings.
+Extract education information from CV using QA model.
+
+All questions are in Vietnamese for Vietnamese project data.
 """
 
 import pandas as pd
@@ -8,18 +10,49 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from embedding_model import extract_field_by_similarity
+from qa_model import extract_multiple_answers
 
 
 def extract_education(degree_text: str) -> dict:
+    """
+    Extract education information from CV.
+
+    Args:
+        degree_text: Raw 'Degree' field from user data (Vietnamese)
+
+    Returns:
+        Dict with education_level, institution, major in Vietnamese
+    """
     if pd.isna(degree_text) or not str(degree_text).strip():
         return {'education_level': '', 'institution': '', 'major': ''}
 
     context = str(degree_text)
+
+    education_level = extract_multiple_answers(context, [
+        "Trình độ học vấn của người này là gì?",
+        "Bằng cấp của người này là gì?",
+        "Học vấn cao nhất là gì?",
+        "Người này tốt nghiệp trình độ nào?"
+    ], combine=False)
+
+    institution = extract_multiple_answers(context, [
+        "Người này học ở trường nào?",
+        "Trường đại học hoặc cao đẳng nào?",
+        "Nơi đào tạo là đâu?",
+        "Tên trường là gì?"
+    ], combine=False)
+
+    major = extract_multiple_answers(context, [
+        "Chuyên ngành học là gì?",
+        "Ngành học của người này là gì?",
+        "Học chuyên ngành nào?",
+        "Chuyên môn được đào tạo là gì?"
+    ], combine=False)
+
     return {
-        'education_level': extract_field_by_similarity(context, "trình độ học vấn bằng cấp"),
-        'institution': extract_field_by_similarity(context, "trường đại học cao đẳng đào tạo"),
-        'major': extract_field_by_similarity(context, "chuyên ngành học thuật")
+        'education_level': education_level,
+        'institution': institution,
+        'major': major
     }
 
 

@@ -1,5 +1,8 @@
 """
-Extract summary/objective from CV data using multilingual embeddings.
+Extract summary/objective from CV data using QA model.
+Source field: 'Target'
+
+All questions are in Vietnamese for Vietnamese project data.
 """
 
 import pandas as pd
@@ -8,16 +11,32 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from embedding_model import extract_field_by_similarity
+from qa_model import extract_multiple_answers
 
 
 def extract_summary(target_text: str) -> str:
+    """
+    Extract career objective or experience summary from CV.
+
+    Args:
+        target_text: Raw 'Target' field from user data (Vietnamese)
+
+    Returns:
+        Extracted summary/objective in Vietnamese
+    """
     if pd.isna(target_text) or not str(target_text).strip():
         return ""
-    return extract_field_by_similarity(
-        str(target_text),
-        "mục tiêu nghề nghiệp hoặc tóm tắt kinh nghiệm làm việc"
-    )
+
+    context = str(target_text).strip()
+
+    questions = [
+        "Mục tiêu nghề nghiệp của người này là gì?",
+        "Tóm tắt kinh nghiệm làm việc là gì?",
+        "Mục tiêu hoặc tóm tắt nghề nghiệp được nêu là gì?",
+        "Người này muốn đạt được điều gì trong sự nghiệp?"
+    ]
+
+    return extract_multiple_answers(context, questions, combine=True)
 
 
 def process_cv_summary(input_csv: str, output_csv: str = None) -> pd.DataFrame:

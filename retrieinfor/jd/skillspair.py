@@ -35,12 +35,12 @@ def extract_required_skills(job_req: str, job_desc: str = "") -> str:
 
     # Extract various types of required skills
     questions = [
-        "What technical skills or software are required for this job?",
-        "What professional skills or competencies are needed?",
-        "What experience or qualifications are required?",
-        "What tools, technologies, or methods must the candidate know?",
-        "What certifications or licenses are needed?",
-        "What languages or specialized skills are required?"
+        "Yêu cầu kỹ năng kỹ thuật hoặc phần mềm nào cho công việc này?",
+        "Yêu cầu kỹ năng chuyên môn hoặc năng lực gì?",
+        "Yêu cầu kinh nghiệm hoặc bằng cấp gì?",
+        "Ứng viên phải biết công cụ, công nghệ hoặc phương pháp nào?",
+        "Yêu cầu chứng chỉ hoặc giấy phép gì?",
+        "Yêu cầu ngôn ngữ hoặc kỹ năng chuyên biệt nào?"
     ]
 
     return extract_multiple_answers(context, questions, combine=True)

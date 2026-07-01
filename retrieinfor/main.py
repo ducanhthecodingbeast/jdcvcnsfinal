@@ -7,8 +7,6 @@ This script:
 2. Extracts structured information from free-text fields using QA model
 3. Combines all extracted fields into final cv.csv and jd.csv
 4. Saves to /preprocessed/
-
-IMPORTANT: This script should NOT be run until reviewed and approved.
 """
 
 import pandas as pd
@@ -179,53 +177,6 @@ def process_all_jd(input_csv: Path) -> pd.DataFrame:
         })
 
     result_df = pd.DataFrame(results)
-    logger.info(f"JD processing complete: {len(result_df)} records")
-    logger.info(f"  Non-empty descriptions: {(result_df['job_description'] != '').sum()}")
-    logger.info(f"  Non-empty required skills: {(result_df['required_skills'] != '').sum()}")
-
-    return result_df
-
-
-# ============================================================================
-# MAIN
-# ============================================================================
-def main():
-    """
-    Main entry point. Processes CV and JD data and saves to preprocessed/.
-
-    DO NOT RUN until code has been reviewed.
-    """
-    logger.info("=" * 60)
-    logger.info("Starting CV/JD Information Retrieval (QA Model)")
-    logger.info("=" * 60)
-
-    # Ensure output directory exists
-    PREPROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-
-    # --- Process CV ---
-    logger.info("\n--- Processing CVs ---")
-    cv_df = process_all_cv(CV_RAW)
-    cv_df.to_csv(CV_OUTPUT, index=False)
-    logger.info(f"Saved CV data to: {CV_OUTPUT}")
-
-    # --- Process JD ---
-    logger.info("\n--- Processing JDs ---")
-    jd_df = process_all_jd(JD_RAW)
-    jd_df.to_csv(JD_OUTPUT, index=False)
-    logger.info(f"Saved JD data to: {JD_OUTPUT}")
-
-    # --- Summary ---
-    logger.info("\n" + "=" * 60)
-    logger.info("PROCESSING COMPLETE")
-    logger.info("=" * 60)
-    logger.info(f"CV output: {CV_OUTPUT} ({len(cv_df)} records)")
-    logger.info(f"JD output: {JD_OUTPUT} ({len(jd_df)} records)")
-    logger.info("\nCV columns: " + ", ".join(cv_df.columns.tolist()))
-    logger.info("JD columns: " + ", ".join(jd_df.columns.tolist()))
-
-
-if __name__ == "__main__":
-    main()    result_df = pd.DataFrame(results)
     logger.info(f"JD processing complete: {len(result_df)} records")
     logger.info(f"  Non-empty descriptions: {(result_df['job_description'] != '').sum()}")
     logger.info(f"  Non-empty required skills: {(result_df['required_skills'] != '').sum()}")

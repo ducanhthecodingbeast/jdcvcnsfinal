@@ -29,10 +29,10 @@ def extract_salary_offer(salary_text: str) -> str:
 
     # Direct extraction - field is already salary info
     questions = [
-        "What salary is offered for this job?",
-        "What is the salary range or compensation?",
-        "What pay or wage is being offered?",
-        "What is the monthly or annual salary?"
+        "Mức lương được đề xuất cho công việc này là bao nhiêu?",
+        "Khoảng lương hoặc đãi ngộ là gì?",
+        "Mức thù lao được đưa ra là bao nhiêu?",
+        "Lương hàng tháng hoặc hàng năm là bao nhiêu?"
     ]
 
     # Try QA extraction

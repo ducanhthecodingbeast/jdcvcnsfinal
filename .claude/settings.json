@@ -1,9 +1,45 @@
 {
   "permissions": {
-    "defaultMode": "bypassPermissions",
-    "skipDangerousModePermissionPrompt": true,
     "allow": [
+      "Bash",
+      "Edit",
+      "Read",
+      "Write",
+      "Grep",
+      "Glob",
+      "LS",
+      "MultiEdit",
+      "NotebookEdit",
+      "NotebookRead",
+      "WebFetch",
+      "WebSearch",
+      "Agent",
+      "TodoWrite",
+      "AskUserQuestion",
+      "EnterPlanMode",
+      "ExitPlanMode",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Workflow",
+      "Skill",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "Monitor",
+      "ScheduleWakeup",
+      "TaskOutput",
+      "TaskStop",
+      "PushNotification",
+      "DesignSync",
+      "SendMessage",
+      "ReportFindings",
       "Bash(python3 -c ' *)"
-    ]
-  }
+    ],
+    "defaultMode": "bypassPermissions",
+    "skipDangerousModePermissionPrompt": true
+  },
+  "model": "opus",
+  "syntaxHighlightingDisabled": true,
+  "effortLevel": "high",
+  "theme": "dark"
 }

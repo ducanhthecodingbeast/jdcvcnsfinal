@@ -28,9 +28,9 @@ def extract_job_location(job_address: str) -> str:
     context = str(job_address).strip()
 
     questions = [
-        "Where is this job located?",
-        "What city or address is the job at?",
-        "What is the work location for this position?"
+        "Địa điểm làm việc của công việc này ở đâu?",
+        "Thành phố hoặc địa chỉ của công việc là gì?",
+        "Nơi làm việc cho vị trí này là ở đâu?"
     ]
 
     result = extract_multiple_answers(context, questions, combine=False)

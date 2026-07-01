@@ -1,0 +1,73 @@
+"""
+Extract salary offer information from JD data using embedding similarity.
+Source field: 'Salary'
+"""
+
+import pandas as pd
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent.parent))
+
+from embedding_model import extract_field_by_similarity
+
+
+def extract_salary_offer(salary_text: str) -> str:
+    """
+    Extract salary offer from JD using embedding similarity.
+
+    Args:
+        salary_text: Raw 'Salary' field from job data
+
+    Returns:
+        Extracted salary offer information
+    """
+    if pd.isna(salary_text) or not str(salary_text).strip():
+        return ""
+
+    context = str(salary_text).strip()
+
+    result = extract_field_by_similarity(context, "salary_offer")
+
+    # If embedding doesn't extract, return cleaned raw text if reasonable length
+    if not result and len(context) < 100:
+        return context.strip()
+
+    return result if result else context.strip()
+
+
+def process_jd_salary(input_csv: str, output_csv: str = None) -> pd.DataFrame:
+    """
+    Process JD data to extract salary offers.
+
+    Args:
+        input_csv: Path to raw JOB_DATA_FINAL.csv
+        output_csv: Optional path to save intermediate results
+
+    Returns:
+        DataFrame with JobID and salary columns
+    """
+    df = pd.read_csv(input_csv)
+
+    salaries = []
+    for idx, row in df.iterrows():
+        sal = extract_salary_offer(row.get('Salary', ''))
+        salaries.append({
+            'JobID': row['JobID'],
+            'salary_offer': sal
+        })
+
+    result_df = pd.DataFrame(salaries)
+
+    if output_csv:
+        result_df.to_csv(output_csv, index=False)
+
+    return result_df
+
+
+if __name__ == "__main__":
+    base_dir = Path(__file__).parent.parent.parent
+    input_path = base_dir / "huggingface + kaggle/dataset/kaggle/job-dataset-for-recommendation/JOB_DATA_FINAL.csv"
+    output_path = base_dir / "preprocessed/jd_salary_temp.csv"
+
+    result = process_jd_salary(str(input_path), str(output_path)) 
