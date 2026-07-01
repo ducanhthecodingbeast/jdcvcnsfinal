@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "skipDangerousModePermissionPrompt": true,
+    "allow": [
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}
