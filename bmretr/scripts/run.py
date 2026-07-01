@@ -17,13 +17,13 @@ import pandas as pd
 import logging
 
 # Ensure we can import retrieinfor and retrieinfor1 as top-level packages
-ROOT = Path(__file__).parent.parent
+ROOT = Path(__file__).parent.parent.parent  # project root (jdcvcnsfinal/)
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-BMRETR = ROOT / "bmretr"
+BMRETR = ROOT / "bmretr"  # bmretr/ dir
 INPUTS = BMRETR / "raw"
 QA_OUT = BMRETR / "outputs" / "qa"
 EMB_OUT = BMRETR / "outputs" / "emb"
