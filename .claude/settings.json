@@ -1,45 +1,16 @@
 {
+  "model": "claude-fable-5",
+  "advisorModel": "fable",
   "permissions": {
-    "allow": [
-      "Bash",
-      "Edit",
-      "Read",
-      "Write",
-      "Grep",
-      "Glob",
-      "LS",
-      "MultiEdit",
-      "NotebookEdit",
-      "NotebookRead",
-      "WebFetch",
-      "WebSearch",
-      "Agent",
-      "TodoWrite",
-      "AskUserQuestion",
-      "EnterPlanMode",
-      "ExitPlanMode",
-      "EnterWorktree",
-      "ExitWorktree",
-      "Workflow",
-      "Skill",
-      "CronCreate",
-      "CronDelete",
-      "CronList",
-      "Monitor",
-      "ScheduleWakeup",
-      "TaskOutput",
-      "TaskStop",
-      "PushNotification",
-      "DesignSync",
-      "SendMessage",
-      "ReportFindings",
-      "Bash(python3 -c ' *)"
-    ],
     "defaultMode": "bypassPermissions",
     "skipDangerousModePermissionPrompt": true
   },
-  "model": "opus",
-  "syntaxHighlightingDisabled": true,
-  "effortLevel": "high",
-  "theme": "dark"
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-3477be05c1d27bed67f86a008d8a44564c4ebad51c46553fa14716b7",
+    "ANTHROPIC_BASE_URL": "https://claudecode.pimath.id.vn/v1",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-fable-5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-opus-4-7"
+  }
 }

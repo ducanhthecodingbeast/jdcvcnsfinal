@@ -69,3 +69,6 @@ tmp/
 temp/
 *.tmp
 *.bak
+
+# Git worktrees (isolated experiment branches)
+.worktrees/
